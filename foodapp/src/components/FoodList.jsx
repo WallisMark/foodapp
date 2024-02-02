@@ -1,5 +1,5 @@
 import React from 'react'
-import FoodIterm from '../FoodIterm'
+import FoodIterm from './FoodIterm'
 
 export default function FoodList({foodData}) {
   return (
