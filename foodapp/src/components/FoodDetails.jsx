@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './foodDetails.module.css'
+import IngredientsItem from './IngredientsItem'
 
 export default function FoodDetails({foodId}) {
     const[food,setFood]= useState({})
@@ -33,13 +34,12 @@ export default function FoodDetails({foodId}) {
          <div>
             <span><strong>${parseFloat((food.pricePerServing/100).toPrecision(3))} Per Serving</strong></span>
          </div>
-        
-         <h2>Dish Types</h2>
-         <div className={styles.dishTypes}>
-            <ol>
-                {isLoading? <p>Data is isLoading...</p>:food.dishTypes.map((dishType)=><li>{dishType}</li>)} 
-            </ol>
-         </div>
+
+          {/* fetching incrediants */}
+          <div>
+          <IngredientsItem food={food} isLoading={isLoading} />
+          </div>
+            
 
          <h2>Instructions</h2>
          <div className={styles.recipeInstructions}>
@@ -48,8 +48,15 @@ export default function FoodDetails({foodId}) {
             </ol>
             
          </div>
+         <h2>Dish Types</h2>
+         <div className={styles.dishTypes}>
+            <ol>
+                {isLoading? <p>Data is isLoading...</p>:food.dishTypes.map((dishType)=><li>{dishType}</li>)} 
+            </ol>
+         </div>
         </div>
-      
+
+          
     </div>
   )
 }
